@@ -53,6 +53,7 @@ public:
     //! Cast to enum type.
     operator T() const { return static_cast<T>(type_id_); }
 
+
     //! Determines if the value contained is valid.
     //!< \return 'true' if the value is valid.
     bool IsValid() const { return type_id_ != 0; }

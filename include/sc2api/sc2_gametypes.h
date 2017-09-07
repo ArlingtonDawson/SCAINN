@@ -165,6 +165,7 @@ struct ReplayInfo {
     std::string map_path;
     std::string replay_path;
     std::string version;
+    std::string data_version;
     ReplayPlayerInfo players[max_num_players];
 
     ReplayInfo() :
@@ -189,21 +190,6 @@ struct ReplayInfo {
     float GetGameloopsPerSecond() const {
         return float(duration_gameloops) / duration;
     }
-};
-
-//! Power source information for Protoss.
-struct PowerSource {
-    PowerSource(const Point2D in_position, float in_radius, Tag in_tag) :
-        position(in_position),
-        radius(in_radius),
-        tag(in_tag) {};
-
-    //! Power source position.
-    Point2D position;
-    //! Power source radius.
-    float radius;
-    //! Unit tag of the power source.
-    Tag tag;
 };
 
 }

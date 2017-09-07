@@ -15,6 +15,8 @@ struct InterfaceSettings;
 
 class ControlInterface {
 public:
+    virtual ~ControlInterface() = default;
+
     virtual ProtoInterface& Proto() = 0;
     virtual bool Connect(const std::string& address, int port, int timeout_ms) = 0;
     virtual bool RemoteSaveMap(const void* data, int data_size, std::string remote_path) = 0;
@@ -64,18 +66,25 @@ public:
 
     virtual void ClearClientErrors() = 0;
     virtual void ClearProtocolErrors() = 0;
+
+    virtual void UseGeneralizedAbility(bool value) = 0;
 };
 
 class AgentControlInterface {
 public:
+    virtual ~AgentControlInterface() = default;
+
     virtual bool Restart() = 0;
 };
 
 class ReplayControlInterface {
 public:
-    virtual bool GatherReplayInfo(const std::string& path) = 0;
+    virtual ~ReplayControlInterface() = default;
+
+    virtual bool GatherReplayInfo(const std::string& path, bool download_data = false) = 0;
     virtual bool LoadReplay(const std::string& replay_path, const InterfaceSettings& settings, uint32_t player_id) = 0;
     virtual bool WaitForReplay() = 0;
+    virtual void UseGeneralizedAbility(bool value) = 0;
 
     virtual const ReplayInfo& GetReplayInfo() const = 0;
 };
